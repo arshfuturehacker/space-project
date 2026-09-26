@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ISS Live Tracker</title>
+<style>
+  :root {
+    --bg1: #0b0c2a;
+    --bg2: #102a43;
+    --accent: #7dd3fc;
+    --accent2: #34d399;
+    --card: rgba(255,255,255,0.06);
+    --err: #f87171;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 25% 20%, var(--bg2), var(--bg1) 65%);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: #f0f0ff;
+  }
+  .card {
+    max-width: 480px;
+    width: 90%;
+    padding: 2.2rem 2rem;
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    text-align: center;
+  }
+  h1 {
+    margin: 0 0 0.2rem;
+    font-size: 1.6rem;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  p.sub { margin: 0 0 1.6rem; color: #b8b8e0; font-size: 0.9rem; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-bottom: 1.6rem;
+  }
+  .stat {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 0.9rem 0.6rem;
+  }
+  .stat .label { font-size: 0.75rem; color: #9999c2; text-transform: uppercase; letter-spacing: 0.5px; }
+  .stat .value { font-size: 1.15rem; font-weight: 600; margin-top: 0.3rem; word-break: break-word; }
+
+  .status {
+    min-height: 1.4rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #b8b8e0;
+  }
+  .status.error { color: var(--err); }
+
+  button {
+    border: none;
+    padding: 0.85rem 1.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    color: #0b0c2a;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  }
+  button:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(125,211,252,0.3); }
+  button:disabled { opacity: 0.6; cursor: default; }
+
+  .updated { margin-top: 1rem; font-size: 0.75rem; color: #7a7aa0; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>🛰️ ISS Live Tracker</h1>
+  <p class="sub">Real-time position of the International Space Station</p>
+
+  <div class="grid">
+    <div class="stat">
+      <div class="label">Latitude</div>
+      <div class="value" id="latitude">—</div>
+    </div>
+    <div class="stat">
+      <div class="label">Longitude</div>
+      <div class="value" id="longitude">—</div>
+    </div>
+    <div class="stat">
+      <div class="label">Altitude (km)</div>
+      <div class="value" id="altitude">—</div>
+    </div>
+    <div class="stat">
+      <div class="label">Velocity (km/h)</div>
+      <div class="value" id="velocity">—</div>
+    </div>
+  </div>
+
+  <div class="status" id="status">Loading initial data…</div>
+  <button id="refreshBtn">🔄 Refresh</button>
+  <div class="updated" id="updated"></div>
+</div>
+
+<script>
+  const API_URL = "https://api.wheretheiss.at/v1/satellites/25544";
+  const els = {
+    latitude: document.getElementById('latitude'),
+    longitude: document.getElementById('longitude'),
+    altitude: document.getElementById('altitude'),
+    velocity: document.getElementById('velocity'),
+    status: document.getElementById('status'),
+    updated: document.getElementById('updated'),
+    btn: document.getElementById('refreshBtn'),
+  };
+
+  function setStatus(msg, isError = false) {
+    els.status.textContent = msg;
+    els.status.classList.toggle('error', isError);
+  }
+
+  async function fetchISS() {
+    els.btn.disabled = true;
+    setStatus('Loading latest position…');
+
+    try {
+      const response = await fetch(API_URL);
+      if (!response.ok) {
+        throw new Error(`Server responded with status ${response.status}`);
+      }
+      const data = await response.json();
+
+      els.latitude.textContent = data.latitude.toFixed(4) + '°';
+      els.longitude.textContent = data.longitude.toFixed(4) + '°';
+      els.altitude.textContent = data.altitude.toFixed(1);
+      els.velocity.textContent = data.velocity.toFixed(0);
+
+      setStatus('Data loaded successfully.');
+      const now = new Date();
+      els.updated.textContent = 'Last updated: ' + now.toLocaleTimeString();
+    } catch (err) {
+      setStatus('Could not load ISS data. Check your connection and try again.', true);
+      console.error('ISS fetch failed:', err);
+    } finally {
+      els.btn.disabled = false;
+    }
+  }
+
+  els.btn.addEventListener('click', fetchISS);
+  fetchISS();
+</script>
+</body>
+</html>

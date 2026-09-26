@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rocket Launch Countdown</title>
+<style>
+  :root {
+    --bg1: #0a0000;
+    --bg2: #1a0505;
+    --accent: #ff1e1e;
+    --accent2: #ff8c00;
+    --glow: #ff3b3b;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    height: 100%;
+  }
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at 50% 120%, var(--bg2), var(--bg1) 70%);
+    font-family: 'Courier New', 'Consolas', monospace;
+    color: #f0e0e0;
+    overflow: hidden;
+    position: relative;
+  }
+  .stars {
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,30,30,0.04) 0px, rgba(255,30,30,0.04) 1px, transparent 1px, transparent 3px),
+      radial-gradient(1px 1px at 10% 20%, rgba(255,150,150,0.6), transparent),
+      radial-gradient(1px 1px at 80% 10%, rgba(255,150,150,0.6), transparent),
+      radial-gradient(1.5px 1.5px at 60% 70%, rgba(255,150,150,0.6), transparent),
+      radial-gradient(1px 1px at 30% 80%, rgba(255,150,150,0.6), transparent),
+      radial-gradient(1.5px 1.5px at 90% 60%, rgba(255,150,150,0.6), transparent);
+    background-repeat: repeat;
+    background-size: 100% 3px, 500px 500px, 500px 500px, 500px 500px, 500px 500px, 500px 500px;
+    opacity: 0.6;
+  }
+  .scan-flash {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(255,30,30,0.12), transparent 60%);
+    animation: alertPulse 2.2s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes alertPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .panel {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    width: 92%;
+    padding: 2.6rem 2rem;
+    background: rgba(20,0,0,0.55);
+    border: 1px solid rgba(255,30,30,0.5);
+    border-radius: 6px;
+    box-shadow: 0 0 70px rgba(255,30,30,0.25), 0 20px 60px rgba(0,0,0,0.7);
+    text-align: center;
+    animation: borderFlash 2.2s ease-in-out infinite;
+  }
+  @keyframes borderFlash {
+    0%, 100% { box-shadow: 0 0 70px rgba(255,30,30,0.2), 0 20px 60px rgba(0,0,0,0.7); }
+    50% { box-shadow: 0 0 100px rgba(255,30,30,0.45), 0 20px 60px rgba(0,0,0,0.7); }
+  }
+
+  .mission-tag {
+    display: inline-block;
+    padding: 0.3rem 1.2rem;
+    margin-bottom: 1rem;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    border: 1px solid rgba(255,140,0,0.5);
+    border-radius: 2px;
+    background: rgba(255,30,30,0.08);
+    animation: tagBlink 1.4s steps(2, start) infinite;
+  }
+  @keyframes tagBlink {
+    50% { opacity: 0.5; }
+  }
+
+  h1 {
+    margin: 0 0 0.4rem;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255,30,30,0.7);
+  }
+
+  .target-date {
+    margin: 0 0 2rem;
+    font-size: 0.9rem;
+    color: #d09090;
+    letter-spacing: 1px;
+  }
+
+  .timer {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.6rem;
+  }
+  .unit {
+    background: rgba(0,0,0,0.45);
+    border: 1px solid rgba(255,30,30,0.35);
+    border-radius: 4px;
+    padding: 1rem 1.1rem;
+    min-width: 82px;
+  }
+  .unit .num {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: var(--glow);
+    text-shadow: 0 0 14px rgba(255,59,59,0.7);
+    font-variant-numeric: tabular-nums;
+  }
+  .unit .lbl {
+    margin-top: 0.3rem;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #b08080;
+  }
+
+  .status {
+    font-size: 0.95rem;
+    color: #e0a0a0;
+    letter-spacing: 1px;
+    min-height: 1.4rem;
+    text-transform: uppercase;
+  }
+
+  .launch-text {
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 4px;
+    color: #fff;
+    text-shadow: 0 0 30px var(--accent), 0 0 70px var(--accent), 0 0 100px var(--accent2);
+    animation: pulse 0.5s ease-in-out infinite alternate;
+  }
+  @keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
+  }
+
+  .rocket {
+    font-size: 2.6rem;
+    margin-bottom: 0.6rem;
+    display: inline-block;
+    animation: hover 2.4s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(255,30,30,0.6));
+  }
+  @keyframes hover {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-6px) translateX(4px); }
+  }
+  .rocket.launched {
+    animation: liftoff 1.6s ease-in forwards;
+  }
+  @keyframes liftoff {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+    30% { transform: translate(40px, -30px) scale(1.05) rotate(-8deg); opacity: 1; }
+    100% { transform: translate(500px, -300px) scale(0.3) rotate(-15deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="scan-flash"></div>
+<div class="panel">
+  <div class="mission-tag">⚠ Strategic Command — Alert Status</div>
+  <div class="rocket" id="rocket">✈️</div>
+  <h1>Doomsday Aircraft Launch</h1>
+  <div class="target-date" id="targetDateLabel"></div>
+
+  <div class="timer" id="timerDisplay">
+    <div class="unit"><div class="num" id="days">00</div><div class="lbl">Days</div></div>
+    <div class="unit"><div class="num" id="hours">00</div><div class="lbl">Hours</div></div>
+    <div class="unit"><div class="num" id="minutes">00</div><div class="lbl">Minutes</div></div>
+    <div class="unit"><div class="num" id="seconds">00</div><div class="lbl">Seconds</div></div>
+  </div>
+
+  <div class="status" id="status">Countdown in progress…</div>
+</div>
+
+<script>
+  // --- Set the launch target here ---
+  // Currently set a reasonable number of days out. Change this value to test.
+  const LAUNCH_DATE = new Date("2026-12-25T09:00:00Z");
+
+  const els = {
+    days: document.getElementById('days'),
+    hours: document.getElementById('hours'),
+    minutes: document.getElementById('minutes'),
+    seconds: document.getElementById('seconds'),
+    status: document.getElementById('status'),
+    timerDisplay: document.getElementById('timerDisplay'),
+    targetDateLabel: document.getElementById('targetDateLabel'),
+    rocket: document.getElementById('rocket'),
+  };
+
+  function pad(n) {
+    return String(n).padStart(2, '0');
+  }
+
+  els.targetDateLabel.textContent =
+    'Scheduled Departure: ' + LAUNCH_DATE.toUTCString();
+
+  let launched = false;
+  let intervalId = null;
+
+  function tick() {
+    const now = new Date();
+    const diff = LAUNCH_DATE.getTime() - now.getTime();
+
+    if (diff <= 0) {
+      if (!launched) {
+        launched = true;
+        clearInterval(intervalId);
+        els.timerDisplay.innerHTML = '<div class="launch-text">LAUNCH!</div>';
+        els.status.textContent = 'Aircraft airborne. All stations report.';
+        els.rocket.classList.add('launched');
+      }
+      return;
+    }
+
+    const totalSeconds = Math.floor(diff / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    els.days.textContent = pad(days);
+    els.hours.textContent = pad(hours);
+    els.minutes.textContent = pad(minutes);
+    els.seconds.textContent = pad(seconds);
+    els.status.textContent = 'Standby — countdown in progress…';
+  }
+
+  tick();
+  intervalId = setInterval(tick, 1000);
+</script>
+</body>
+</html>

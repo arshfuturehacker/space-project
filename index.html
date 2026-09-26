@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05070b">
+  <meta name="description" content="Deep Space Observatory — a cinematic, educational browser observatory for exploring space facts, the ISS, missions, launch windows, space photography, and a dedicated Mars archive.">
+  <title>Deep Space Observatory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Main.css/style.css">
+</head>
+<body data-atmosphere="hero">
+  <div id="space-page">
+
+  <div class="space-backdrop" aria-hidden="true">
+    <div class="space-vignette"></div>
+    <div class="star-field" id="starField"></div>
+  </div>
+
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#top" aria-label="Deep Space Observatory home">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="brand-text">Deep Space Observatory</span>
+    </a>
+    <nav class="observatory-nav" aria-label="Observatory chapters">
+      <a class="nav-link is-active" href="#discover" data-nav="discover"><span>01</span> Discover</a>
+      <a class="nav-link" href="#observe" data-nav="observe"><span>02</span> Observe</a>
+      <a class="nav-link" href="#explore" data-nav="explore"><span>03</span> Explore</a>
+      <a class="nav-link" href="#anticipate" data-nav="anticipate"><span>04</span> Anticipate</a>
+      <a class="nav-link" href="#gallery" data-nav="gallery"><span>05</span> Gallery</a>
+      <a class="nav-link" href="#mars" data-nav="mars"><span>06</span> Mars</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero chapter-surface" data-stage="hero" aria-labelledby="hero-title">
+      <div class="hero-grid container">
+        <div class="hero-copy reveal reveal--hero">
+          <p class="eyebrow">A browser observatory for curious minds</p>
+          <h1 id="hero-title">Deep Space<br><em>Observatory</em></h1>
+          <p class="hero-tagline">Look beyond what you know.</p>
+          <p class="hero-description">Move through a living collection of space knowledge, orbital data, missions, and images — built as one continuous journey.</p>
+          <a class="primary-cta" href="#discover">Begin exploration <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="hero-art reveal reveal--planet">
+          <div class="hero-planet-wrap">
+            <!-- CSS gradient is the no-JS fallback; hero-planet.js replaces it with a live, draggable planet -->
+            <div class="hero-planet" id="hero-planet"></div>
+            <div class="hero-orbit hero-orbit--one" aria-hidden="true"></div>
+            <div class="hero-orbit hero-orbit--two" aria-hidden="true"></div>
+          </div>
+          <div class="planet-label"><span>EXOPLANET / 01</span><strong>UNKNOWN WORLD</strong></div>
+          <p class="planet-hint" id="planet-hint">Drag to rotate &middot; Click to spin</p>
+        </div>
+      </div>
+      <div class="hero-bottom container reveal reveal--bottom">
+        <span>Scroll to enter the observatory</span>
+        <span class="scroll-line" aria-hidden="true"></span>
+      </div>
+    </section>
+
+    <section class="chapter chapter--discover chapter-surface" id="discover" data-stage="discover" aria-labelledby="discover-title">
+      <div class="container">
+        <div class="chapter-intro reveal" style="--delay:.05s">
+          <p class="chapter-index">01 — Discover</p>
+          <h2 id="discover-title">Start with a question.<br><em>Leave with another.</em></h2>
+          <p class="chapter-lede">Space is full of ideas that sound impossible until you understand the physics underneath them.</p>
+        </div>
+
+        <div class="module-grid module-grid--facts">
+          <div class="module-shell module-shell--facts reveal" style="--delay:.17s">
+            <div class="module-header">
+              <div><span class="module-kicker">Observatory Instrument</span><h3>Space Facts</h3></div>
+              <span class="module-code">DSO / 01A</span>
+            </div>
+            <div class="fact-instrument">
+              <p class="instrument-label">RANDOMIZED COSMIC KNOWLEDGE</p>
+              <div class="fact-box" id="factBox" aria-live="polite">Press the button to reveal a space fact.</div>
+              <div class="fact-actions">
+                <button class="button button--primary" id="factBtn" type="button">Reveal a fact <span aria-hidden="true">↗</span></button>
+                <span class="counter" id="counter">Facts seen: 0</span>
+              </div>
+            </div>
+          </div>
+          <aside class="side-note reveal" style="--delay:.29s">
+            <span class="side-note-number">A1</span>
+            <h3>Why facts matter</h3>
+            <p>Good astronomy is not a pile of trivia. Each fact points toward a bigger model: rotation, density, orbital motion, stellar evolution, or the scale of the observable universe.</p>
+            <div class="rule-note">Read • Compare • Question</div>
+          </aside>
+        </div>
+
+        <div class="explainer-grid">
+          <article class="knowledge-card reveal" style="--delay:.09s"><span>Orbital mechanics</span><h3>Gravity is the guide.</h3><p>Orbit is not “floating.” An orbiting body is continually falling toward a larger body while its sideways velocity carries it forward. The balance creates a curved path.</p></article>
+          <article class="knowledge-card reveal" style="--delay:.17s"><span>Light-years</span><h3>Distance can be time.</h3><p>A light-year is a distance, not a duration: the distance light travels in one year. Looking farther into space means looking farther back into cosmic history.</p></article>
+          <article class="knowledge-card reveal" style="--delay:.25s"><span>Scale</span><h3>The universe resists intuition.</h3><p>Planetary distances are already enormous. Stellar and galactic scales stretch that intuition until familiar units stop being useful.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter chapter--observe chapter-surface" id="observe" data-stage="observe" aria-labelledby="observe-title">
+      <div class="container">
+        <div class="chapter-intro reveal" style="--delay:.05s">
+          <p class="chapter-index">02 — Observe</p>
+          <h2 id="observe-title">The universe moves.<br><em>So does our laboratory.</em></h2>
+          <p class="chapter-lede">Track the International Space Station through live position data and see the orbit as a measurable thing.</p>
+        </div>
+
+        <div class="module-grid module-grid--iss">
+          <div class="module-shell module-shell--iss reveal" style="--delay:.17s">
+            <div class="module-header">
+              <div><span class="module-kicker">Live telemetry</span><h3>ISS Position Tracker</h3></div>
+              <span class="live-pill"><i></i> Live</span>
+            </div>
+            <div class="iss-readout-grid">
+              <div class="iss-stat"><span>Latitude</span><strong id="latitude">—</strong><small>deg</small></div>
+              <div class="iss-stat"><span>Longitude</span><strong id="longitude">—</strong><small>deg</small></div>
+              <div class="iss-stat"><span>Altitude</span><strong id="altitude">—</strong><small>km</small></div>
+              <div class="iss-stat"><span>Velocity</span><strong id="velocity">—</strong><small>km/h</small></div>
+            </div>
+            <div class="iss-footer">
+              <div class="status" id="status" role="status">Loading initial data…</div>
+              <button class="button button--secondary" id="refreshBtn" type="button">Refresh telemetry</button>
+            </div>
+            <div class="updated" id="updated"></div>
+          </div>
+          <aside class="orbital-card reveal" style="--delay:.30s">
+            <div class="orbit-visual" aria-hidden="true"><span class="orbit-dot"></span><span class="earth-dot"></span></div>
+            <span class="side-note-number">ORBIT / LEO</span>
+            <h3>What an orbit means</h3>
+            <p>The ISS travels in low Earth orbit. Its position is constantly changing because orbital motion is continuous, not a sequence of static locations.</p>
+            <div class="rule-note">Gravity + velocity = orbit</div>
+          </aside>
+        </div>
+
+        <div class="explainer-grid">
+          <article class="knowledge-card reveal" style="--delay:.09s"><span>Lagrange points</span><h3>Useful places in a moving system.</h3><p>In a two-body system, certain regions let spacecraft maintain useful relative geometry with less station-keeping effort. The Sun–Earth L1 point is one example.</p></article>
+          <article class="knowledge-card reveal" style="--delay:.17s"><span>Human spaceflight</span><h3>Orbit is an environment.</h3><p>Microgravity, radiation, life-support limits, and communication windows all shape how crewed missions are designed and operated.</p></article>
+          <article class="knowledge-card reveal" style="--delay:.25s"><span>Telemetry</span><h3>Numbers tell a story.</h3><p>Latitude, longitude, altitude, and velocity are simple measurements — together they describe where a spacecraft is and how it is moving.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter chapter--explore chapter-surface" id="explore" data-stage="explore" aria-labelledby="explore-title">
+      <div class="container">
+        <div class="chapter-intro reveal" style="--delay:.05s">
+          <p class="chapter-index">03 — Explore</p>
+          <h2 id="explore-title">Names become worlds.<br><em>Missions become stories.</em></h2>
+          <p class="chapter-lede">Search across the supplied observatory database for planets, moons, spacecraft, probes, telescopes, rovers, and missions.</p>
+        </div>
+
+        <div class="module-shell module-shell--search reveal" style="--delay:.17s">
+          <div class="module-header">
+            <div><span class="module-kicker">Archive access</span><h3>Space Object & Mission Search</h3></div>
+            <span class="module-code">DSO / 03A</span>
+          </div>
+          <form class="search-row" id="searchForm">
+            <label class="sr-only" for="searchInput">Search space objects and missions</label>
+            <input id="searchInput" type="text" autocomplete="off" placeholder="Mars, Voyager 1, Apollo 11…">
+            <button class="button button--primary" id="searchBtn" type="submit">Search archive <span aria-hidden="true">↗</span></button>
+          </form>
+          <div class="search-result" id="result" aria-live="polite">
+            <div class="placeholder">Type a name above and press Search.</div>
+          </div>
+          <p class="hint">Try: Earth, Titan, Voyager 2, Chandrayaan-3, Curiosity, Kepler…</p>
+        </div>
+
+        <div class="explainer-split">
+          <article class="knowledge-feature reveal" style="--delay:.10s"><span>Mission design</span><h3>A mission is a chain of constraints.</h3><p>Launch energy, trajectory, communication, power, thermal control, instruments, landing systems, and science objectives all have to fit inside one physical spacecraft architecture.</p></article>
+          <article class="knowledge-feature reveal" style="--delay:.20s"><span>Planetary systems</span><h3>A world is more than its surface.</h3><p>Understanding a planet means connecting its atmosphere, interior, magnetic environment, moons, rings, weather, geology, and place within the larger system.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter chapter--anticipate chapter-surface" id="anticipate" data-stage="anticipate" aria-labelledby="anticipate-title">
+      <div class="container">
+        <div class="chapter-intro reveal" style="--delay:.05s">
+          <p class="chapter-index">04 — Anticipate</p>
+          <h2 id="anticipate-title">Before a mission becomes history,<br><em>it becomes a countdown.</em></h2>
+          <p class="chapter-lede">A launch window turns an abstract mission into a precise point on the timeline.</p>
+        </div>
+
+        <div class="module-shell module-shell--countdown reveal" style="--delay:.17s">
+          <div class="launch-topline"><span class="module-kicker">Mission clock</span><span class="launch-badge">Demonstration window</span></div>
+          <div class="countdown-heading"><div><h3>Mission Launch Countdown</h3><p id="targetDateLabel">Scheduled Departure: —</p></div><div class="launch-signal" aria-hidden="true"><span></span><span></span><span></span></div></div>
+          <div class="timer" id="timerDisplay" aria-live="polite">
+            <div class="unit"><strong class="num" id="days">00</strong><span>Days</span></div>
+            <div class="unit"><strong class="num" id="hours">00</strong><span>Hours</span></div>
+            <div class="unit"><strong class="num" id="minutes">00</strong><span>Minutes</span></div>
+            <div class="unit"><strong class="num" id="seconds">00</strong><span>Seconds</span></div>
+          </div>
+          <div class="countdown-footer"><div class="status" id="countdownStatus">Standby — countdown in progress…</div><div class="rocket-mark" id="rocket" aria-hidden="true">↗</div></div>
+        </div>
+
+        <div class="explainer-grid">
+          <article class="knowledge-card reveal" style="--delay:.09s"><span>Launch windows</span><h3>Timing can be orbital.</h3><p>Some missions have favorable periods because the relative positions of worlds change continuously along their orbits.</p></article>
+          <article class="knowledge-card reveal" style="--delay:.17s"><span>Escape velocity</span><h3>Energy decides the journey.</h3><p>Leaving Earth requires enough energy to reach the desired trajectory. Rockets create that change in velocity rather than simply “pushing upward.”</p></article>
+          <article class="knowledge-card reveal" style="--delay:.25s"><span>Staging</span><h3>Mass is the hard limit.</h3><p>Multistage rockets discard empty tanks and engines so the remaining vehicle can accelerate more efficiently toward orbit and beyond.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter chapter--gallery chapter-surface" id="gallery" data-stage="gallery" aria-labelledby="gallery-title">
+      <div class="container container--wide">
+        <div class="chapter-intro reveal" style="--delay:.05s">
+          <p class="chapter-index">05 — See the universe</p>
+          <h2 id="gallery-title">Some things are better<br><em>experienced in silence.</em></h2>
+          <p class="chapter-lede">A visual archive assembled from the gallery component you supplied. Open an image, move through the sequence, and let the scale of the subject do the talking.</p>
+        </div>
+
+        <div class="gallery-wrap reveal" style="--delay:.17s">
+          <div class="gallery-toolbar"><span>IMAGE ARCHIVE</span><span>SELECT FRAME TO EXPAND</span></div>
+          <div class="gallery" id="galleryGrid"></div>
+        </div>
+
+        <div class="gallery-note reveal" style="--delay:.25s"><span>Observation</span><p>Telescopes convert faint light into evidence. Images are not only beautiful; they carry information about temperature, composition, motion, distance, and structure.</p></div>
+      </div>
+    </section>
+    <section class="chapter chapter--mars chapter-surface mars-banner" id="mars" data-stage="mars" aria-labelledby="mars-title">
+      <div class="container mars-banner-row">
+        <div class="mars-banner-copy reveal" style="--delay:.05s">
+          <p class="chapter-index">06 — Go deeper</p>
+          <h2 id="mars-title">The Red Planet is waiting.<br><em>Enter the Mars archive.</em></h2>
+          <p class="chapter-lede">Continue from the general observatory into a dedicated Mars experience containing the supplied fact roulette, mission briefs, video, podcast, imagery and 2026 research archive.</p>
+        </div>
+        <a class="mars-cta reveal" style="--delay:.17s" href="#mars" data-page-link="mars">Explore Mars <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div><div class="brand brand--footer"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-text">Deep Space Observatory</span></div><p>Look beyond what you know.</p></div>
+      <div class="footer-meta"><span>Browser-based observatory</span><span>Built as one continuous exploration</span><span>© 2026</span></div>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Space image viewer" aria-hidden="true">
+    <div class="lightbox-inner">
+      <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Close image viewer">×</button>
+      <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="Previous image">‹</button>
+      <div class="lb-image-wrap">
+        <img id="lbImage" src="" alt="">
+        <div class="lightbox-caption-wrap"><div class="lightbox-caption" id="lbCaption"></div><div class="lightbox-counter" id="lbCounter"></div></div>
+      </div>
+      <button class="lb-btn lb-next" id="lbNext" type="button" aria-label="Next image">›</button>
+    </div>
+  </div>
+
+  <noscript><div class="noscript-note">JavaScript is required for live ISS telemetry, fact generation, search, countdown, and the image viewer.</div></noscript>
+  </div>
+
+  <div id="mars-page" hidden>
+
+
+<nav>
+  <a href="#top" data-page-link="space" style="font-family:var(--mono);font-size:12.5px;color:var(--regolith);text-decoration:none;">&larr; OBSERVATORY</a>
+  <span class="brand">MARS // FIELD REPORT</span>
+  <span class="sol" id="sol-counter">SOL —</span>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <figure class="mars-photo">
+    <span class="mars-ring mars-ring-1"></span>
+    <span class="mars-ring mars-ring-2"></span>
+    <div class="mars-globe" id="mars-globe">
+      <!-- static fallback, replaced by the live rotating planet once the engine starts -->
+      <img src="media/images/7.avif" width="900" height="900" decoding="async"
+           alt="Mars as a full disk, with the Valles Marineris canyon system across its face and a white polar cap at the top">
+    </div>
+    <figcaption id="mars-hint">MARS &middot; DRAG TO ROTATE &middot; CLICK TO SPIN</figcaption>
+  </figure>
+  <div class="hero-content">
+    <div class="eyebrow-log">Transmission received · <span>4,930 sols and counting</span></div>
+    <h1 class="title">Mystery,<br>then <em>mastery.</em></h1>
+    <p class="lede">Ancient rivers, ghost magnetic fields, honeycomb ground that shouldn't exist, and a five-nation race to bring a piece of it home. Everything we currently know about the fourth rock from the sun — in one long scroll.</p>
+    <div class="hero-ctas">
+      <a href="#roulette" class="btn btn-solid">Spin the fact deck</a>
+      <a href="#story" class="btn btn-outline">Start reading</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STATS ===================== -->
+<div class="wrap">
+  <div class="stats-strip">
+    <div class="stat"><span class="num">3,390 km</span><span class="lab">Mean radius — 53% of Earth's</span></div>
+    <div class="stat"><span class="num">24h 37m</span><span class="lab">Length of one sol</span></div>
+    <div class="stat"><span class="num">687</span><span class="lab">Earth days per Martian year</span></div>
+    <div class="stat"><span class="num">&lt;1%</span><span class="lab">Atmospheric pressure vs Earth</span></div>
+    <div class="stat"><span class="num">2</span><span class="lab">Moons — Phobos & Deimos</span></div>
+  </div>
+</div>
+
+<!-- ===================== STORY / OVERVIEW ===================== -->
+<section class="section" id="story">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="log-tag">01 · Planetary baseline</div>
+      <h2 class="section-title">A half-scale desert with real weather</h2>
+      <p>Mars looks static from a telescope. Up close it has seasons, dust storms that swallow the globe, and swings in temperature that would shatter most equipment.</p>
+    </div>
+    <div class="story-grid">
+      <div>
+        <p>Mars orbits the Sun at 142 million miles out — 1.5 times Earth's distance — so sunlight arriving there left the Sun about 13 minutes earlier. A 25-degree axial tilt gives it four seasons of uneven length, stretched out by its more eccentric orbit around the Sun.</p>
+        <p>Surface temperature swings from a mild 70°F (20°C) at the equator in summer to -225°F (-153°C) at the poles. The atmosphere, mostly carbon dioxide with traces of nitrogen and argon, is under 1% the density of Earth's — thin enough that any human visitor needs a pressure suit, and thin enough that landing anything heavier than a golf cart requires retro-rockets rather than parachutes alone.</p>
+      </div>
+      <div>
+        <div class="highlight-box">
+          <span class="tag">SCALE CHECK</span>
+          If Earth were a nickel, Mars would be about the size of a raspberry sitting next to it.
+        </div>
+        <p>Global dust storms are a genuine hazard, not weather-app trivia: high winds loft fine, oxidized iron dust into the thin air, sometimes blotting out the sun for weeks across the entire planet — the same rust-colored dust that gives Mars its color and, eventually, its nickname.</p>
+        <div class="pullquote">"It blows my mind." — an astrobiologist, on 2026's organic-chemistry findings from Gale Crater.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ASTROBIOLOGY / DISCOVERIES ===================== -->
+<section class="section" style="background:var(--char2);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="log-tag">02 · What the rovers are finding</div>
+      <h2 class="section-title">The chemistry of a planet that might once have lived</h2>
+      <p>Two rovers, two craters, and a run of discoveries in 2026 that keep pointing the same direction: ancient Mars had the right chemistry for life, even if life itself is still unproven.</p>
+    </div>
+    <div class="story-grid">
+      <div>
+        <div class="highlight-box">
+          <span class="tag">JEZERO CRATER · PERSEVERANCE</span>
+          Using its SHERLOC laser instrument, Perseverance detected widespread macromolecular carbon inside mudstones at the Bright Angel formation — organic compounds locked in during two separate geological eras, first by an ancient lakebed, then by later groundwater.
+        </div>
+        <div class="highlight-box">
+          <span class="tag">CHEYAVA FALLS</span>
+          Millimeter-scale "leopard spot" patterns turned up in the same rock — the kind of iron-and-phosphate reaction pattern that, on Earth, is usually a byproduct of ancient microbial metabolism.
+        </div>
+      </div>
+      <div>
+        <div class="highlight-box">
+          <span class="tag">GALE CRATER · CURIOSITY</span>
+          Curiosity identified 21 distinct carbon-based molecules in a 2020 rock sample, including several never seen on Mars before — among them a nitrogen-ring structure that's a chemical predecessor to RNA and DNA.
+        </div>
+        <div class="highlight-box">
+          <span class="tag">ACCIDENTAL FIND</span>
+          The rover cracked a rock open by accident while driving over it and exposed yellow crystals of pure elemental sulfur — a first for Mars, and a total surprise to the mission team.
+        </div>
+        <p style="margin-top:8px; font-size:.92rem; color:rgba(237,224,211,.6);">Curiosity logged its 5,000th sol on Mars in late 2026, still working through the layered lakebed strata of Mount Sharp.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section class="section" style="background:var(--char2);" id="mars-gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="log-tag">03 · Field imagery</div>
+      <h2 class="section-title">Mars, up close and from orbit</h2>
+      <p>Tap any image for the full view and context.</p>
+    </div>
+    <div class="gallery-grid" id="mars-gallery-grid"></div>
+  </div>
+</section>
+
+<div class="lightbox" id="marsLightbox">
+  <button class="lb-close" id="mars-lb-close" aria-label="Close">&times;</button>
+  <img id="lb-img" src="" alt="">
+  <div class="lb-cap"><span id="lb-tag"></span><p id="lb-text"></p></div>
+</div>
+
+<!-- ===================== MINDMAP ===================== -->
+<section class="section" id="mindmap">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="log-tag">03 · The whole picture, mapped</div>
+      <h2 class="section-title">Click a node to open that thread</h2>
+      <p>Six threads of the Mars story, all connected. Tap any node below for the short version.</p>
+    </div>
+    <div class="mindmap-wrap">
+      <svg id="mindmap-svg" viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg"></svg>
+      <div class="mm-panel" id="mm-panel">
+        <h4>Tap a node</h4>
+        <p>Choose a topic above — environment, biosignatures, the armada race, radiation shielding, commercial plans, or the international rivalry — to read the short version here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VIDEO ===================== -->
+<section class="section" style="background:var(--char2);" id="video">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="log-tag">04 · Watch</div>
+      <h2 class="section-title">Mars: Mystery to Mastery</h2>
+      <p>An 11-minute walk through everything above, if you'd rather watch than scroll.</p>
+    </div>
+    <div class="media-card" style="max-width:720px;">
+      <video controls preload="none" poster="media/images/20.avif">
+        <source src="media/videos/1.mp4" type="video/mp4">
+      </video>
+      <div class="media-body">
+        <h3>Mars: Mystery to Mastery</h3>
+        <p>Compressed for this page — quality is intentionally reduced to keep the site lightweight. Runtime ≈ 11:05.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PODCAST ===================== -->
+<section class="section" id="podcast">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="log-tag">05 · Listen</div>
+      <h2 class="section-title">Magnetic umbrellas and the Mars race</h2>
+      <p>A 21-minute episode on natural radiation shielding and who's racing to get there first.</p>
+    </div>
+    <div class="podcast-card" style="max-width:720px;">
+      <div class="podcast-art">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a4 4 0 0 0-4 4v5a4 4 0 0 0 8 0V7a4 4 0 0 0-4-4Z" stroke="#0F0906" stroke-width="1.6"/><path d="M6 11a6 6 0 0 0 12 0M12 19v2" stroke="#0F0906" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </div>
+      <div class="podcast-info">
+        <h3>Magnetic umbrellas and the Mars race</h3>
+        <div class="meta">EPISODE · 21:01</div>
+      </div>
+      <audio id="podcast-audio" preload="none">
+        <source src="media/audio/1.mp3" type="audio/mpeg">
+      </audio>
+      <div class="player-controls">
+        <button class="play-btn" id="pod-play" aria-label="Play">
+          <svg id="pod-play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>
+        </button>
+        <div class="progress-track" id="pod-track"><div class="progress-fill" id="pod-fill"></div></div>
+        <span class="time-lab" id="pod-time">0:00 / 21:01</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ROULETTE ===================== -->
+<section class="section" style="background:var(--char2);" id="roulette">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="log-tag">06 · Play</div>
+      <h2 class="section-title">Mars fact roulette</h2>
+      <p>Spin through the deck — every fact appears once. Fresh 2026 discoveries mixed in with the classics.</p>
+    </div>
+    <div class="roulette-wrap">
+      <div class="deck" id="deck"></div>
+      <div class="roulette-controls">
+        <button class="btn btn-solid" id="spin-btn">Spin for a fact</button>
+        <span class="progress-dots" id="roulette-progress">Facts logged: <b>0</b> / 20</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ROADMAP ===================== -->
+<section class="section" id="roadmap">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="log-tag">07 · What's next</div>
+      <h2 class="section-title">The 2026–2030s roadmap</h2>
+      <p>Five space agencies, one destination. Here's who's launching what, and when.</p>
+    </div>
+    <div class="roadmap-track">
+      <div class="roadmap-line">
+        <div class="rm-stop"><div class="rm-dot"></div><span class="rm-year">2026</span><div class="rm-desc">Curiosity hits its 5,000th sol. JAXA's MMX launches to retrieve a Phobos sample. NASA's twin ESCAPADE orbiters launch to study atmospheric stripping.</div></div>
+        <div class="rm-stop"><div class="rm-dot"></div><span class="rm-year">2027</span><div class="rm-desc">ESCAPADE arrives at Mars to begin studying how solar wind strips away the atmosphere.</div></div>
+        <div class="rm-stop"><div class="rm-dot"></div><span class="rm-year">2028</span><div class="rm-desc">China's Tianwen-3 launches on a dual Long March 5, targeting 500g of returned sample. ESA/NASA's Rosalind Franklin rover lands at Oxia Planum to drill 2 meters down.</div></div>
+        <div class="rm-stop"><div class="rm-dot"></div><span class="rm-year">2030</span><div class="rm-desc">ISRO's Mangalyaan-2 attempts India's first Mars soft landing, with an orbiter, lander, and rover package.</div></div>
+        <div class="rm-stop"><div class="rm-dot"></div><span class="rm-year">2031</span><div class="rm-desc">Tianwen-3's samples are due back on Earth — potentially the first Mars samples returned by any nation.</div></div>
+        <div class="rm-stop"><div class="rm-dot"></div><span class="rm-year">2030s+</span><div class="rm-desc">SpaceX targets uncrewed Starship landings at Arcadia Planitia, with humanoid robots verifying subsurface ice before any crew follows.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  TRANSMISSION ENDS · BUILT FOR A PERSONAL PROJECT · SOURCES: NASA, ESA, ISRO, JAXA MISSION DATA
+</footer>
+  </div>
+
+  <script src="Main.js/exo-texture.js" defer></script>
+  <script src="Main.js/mars-texture.js" defer></script>
+  <script src="Main.js/planet-engine.js" defer></script>
+  <script type="module" src="Main.js/app.js"></script>
+</body>
+</html>
